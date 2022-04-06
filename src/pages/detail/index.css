@@ -1,0 +1,47 @@
+.button-annotation {
+    padding: 5px 10px;
+    background-color: white;
+    color: #737475;
+    border: 1px solid #8CC1FC;
+    border-radius: 5px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    transition-duration: 0.4s;
+    margin-right: 5px;
+}
+
+.button-annotation:hover {
+    color: white;
+    background-color: #8CC1FC;
+}
+
+.icon-annotation {
+    margin-right: 10px;
+    margin-top: 4px;
+    color: #737475;
+    cursor: pointer;
+}
+
+.button-reason {
+    
+    margin: 5px;
+    font-size: 14px;
+    font-family:sans-serif;
+    padding: 7px 12px;
+    
+    border-radius: 5px;
+    
+}
+
+.blackButton{
+    border: rgba(180, 180, 180, 0.25) solid 1px;
+    background-color: white;
+    color: #A0A8B9;
+  }
+  
+  .whiteButton{
+    border: #000 solid 1px;
+    background-color: #F5F8FF;
+    color: black;
+  }
