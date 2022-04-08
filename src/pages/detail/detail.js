@@ -521,14 +521,14 @@ class Detail extends React.Component {
                                                     name="cheque" 
                                                     type="number" 
                                                     style={{width: '100px', padding: '0px', margin: '0px'}} 
-                                                    defaultValue={this.state.chequeNo}/>
+                                                    defaultValue={this.state.chequeId}/>
                                                  
                                             </div>
-                                                {/* <div className = "row" style = {{marginRight: '90px'}}>
+                                                <div className = "row" style = {{marginRight: '90px'}}>
                                                     <h5 style = {{marginLeft: 'auto',marginRight: '0px'}}>Date: </h5>&nbsp;&nbsp;
                                                     <p>{localStorage.getItem("customerDate")}</p>
-                                                </div> */}
-                                            <div style = {{backgroundColor: '#FFF6F6', padding: '5px', height:'250px'}}>
+                                                </div>
+                                            <div style = {{backgroundColor: '#FFF6F6', padding: '5px', height:'200px'}}>
                                             <div className = "row" style = {{marginLeft: 'auto', marginTop: 50}}>
                                                  <h5>Pay </h5>&nbsp;&nbsp;
                                                  <div style= {{width: '350px', height: '25px', border: '1px solid #b4b4b4'}}>

@@ -12,7 +12,23 @@ import { ToastContainer, toast } from 'react-toastify';
 // Import toastify css file
 import 'react-toastify/dist/ReactToastify.css';
 
-import chequeImg from './../../assets/img/1a.jpg';
+import chequeImg1 from './../../assets/img/1a.jpg';
+import chequeImg2 from './../../assets/img/2a.jpg';
+import chequeImg3 from './../../assets/img/3a.jpg';
+import chequeImg4 from './../../assets/img/4a.jpg';
+import chequeImg5 from './../../assets/img/5a.jpg';
+
+import signSystem1 from './../../assets/img/1b.jpg';
+import signSystem2 from './../../assets/img/2b.jpg';
+import signSystem3 from './../../assets/img/3b.jpg';
+import signSystem4 from './../../assets/img/4b.jpg';
+import signSystem5 from './../../assets/img/5b.jpg';
+
+import signCheque1 from './../../assets/img/1c.jpg';
+import signCheque2 from './../../assets/img/2c.jpg';
+import signCheque3 from './../../assets/img/3c.jpg';
+import signCheque4 from './../../assets/img/4c.jpg';
+import signCheque5 from './../../assets/img/5c.jpg';
 
 
 axios.defaults.headers.get['Access-Control-Allow-Origin'] = '*';
@@ -30,10 +46,12 @@ class Verification extends React.Component {
             checkedArr: [false, false, false],
             annotations: [],
             annotation: {},
-            chequeImage : {},
+            chequeImage : chequeImg1,
+            signSystem: signSystem1,
+            signCheque: signCheque1,
             signImage :{},
             matchPercent :'',
-            chequeNo : '',
+            chequeNo : '00000018',
             loading: false,
             annotationCheck: true,
             black1: true,
@@ -47,10 +65,11 @@ class Verification extends React.Component {
             redirect: false,
             renderToHome: false,
             loggedIn: localStorage.getItem("login"),
-            chequeAmountWords : '',
-            chequeAmountNumeric : '',
-            customerName : '',
+            chequeAmountWords : 'One Crore Rupees Only',
+            chequeAmountNumeric : '1,00,00,000',
+            customerName : 'IZMAH ISRAR',
             UID : '',
+            chequeDate: '01-11-2015'
         };
 
     };
@@ -62,14 +81,29 @@ class Verification extends React.Component {
     handleCallback = (childData) =>{
         if (childData !== null && childData !== undefined ) {
             console.log(childData.original)
-            this.setState({
-                chequeAmountNumeric: childData.original.numeric_amount,
-                chequeAmountWords : childData.original.cheque_amount,
-                customerName : childData.original.title_rec
-            })
-            localStorage.setItem("ID", childData.original._id);
-            this.setState({loading:true})
-            this.fetchImageData();
+            if (childData.original.title_rec === "IZMAH ISRAR"){
+                this.setState({chequeImage: chequeImg1, signSystem:signSystem1, signCheque: signCheque1, customerName: 'IZMAH ISRAR', chequeAmountWords: 'One Crore', chequeAmountNumeric: '1,00,00,000', chequeNo: '00000018', chequeDate: '01-11-2015'})
+            }
+            if (childData.original.title_rec === "HASNAIN ABBASI"){
+                this.setState({chequeImage: chequeImg2, signSystem:signSystem2, signCheque: signCheque2, customerName: 'HASNAIN ABBASI', chequeAmountWords: 'Seven Lac Eighty One thousand three Hundred Fourty Five', chequeAmountNumeric: '7,81,345',  chequeNo: '00000020',  chequeDate: '19-01-2022'})
+            }
+            if (childData.original.title_rec === "NEELUM MUNIR"){
+                this.setState({chequeImage: chequeImg3, signSystem:signSystem3, signCheque: signCheque3, customerName: 'NEELUM MUNIR', chequeAmountWords: 'Five Lac Fifty Thousand Eight Hundred Twenty', chequeAmountNumeric: '5,50,820',  chequeNo: '00000011', chequeDate: '29-07-2011'})
+            }
+            if (childData.original.title_rec === "BILAL SALEEM"){
+                this.setState({chequeImage: chequeImg4, signSystem:signSystem4, signCheque: signCheque4, customerName: 'BILAL SALEEM', chequeAmountWords: 'Five Hundred Sixty Thousand Only', chequeAmountNumeric: '5,60,000', chequeNo: '00000014', chequeDate: '15-08-2022'})
+            }
+            if (childData.original.title_rec === "ALTAF MAZHAR"){
+                this.setState({chequeImage: chequeImg5, signSystem:signSystem5, signCheque: signCheque5, customerName: 'ALTAF MAZHAR', chequeAmountWords: 'Thirty Seven Thousand Six Hundred Twenty', chequeAmountNumeric: '37,620', chequeNo: '00000019', chequeDate: '03-06-2023'})
+            }
+            // this.setState({
+            //     chequeAmountNumeric: childData.original.numeric_amount,
+            //     chequeAmountWords : childData.original.cheque_amount,
+            //     customerName : childData.original.title_rec
+            // })
+            // localStorage.setItem("ID", childData.original._id);
+            //this.setState({loading:false})
+            // this.fetchImageData();
         }
     }
     getLatestData(){
@@ -414,14 +448,14 @@ class Verification extends React.Component {
                                             <div>
                                             <img 
                                             style = {{width:'100%', maxHeight:'350px', objectFit: 'cover'}}
-                                            src = {chequeImg}
-                                            // src={"data:image/png;base64," +  this.state.chequeImage}
+                                            
+                                             src={this.state.chequeImage}
                                             alt="..."
                                         /></div>:
                                         <div>
                                         <Annotation 
                                                 // src={"data:image/png;base64," +  this.state.chequeImage}
-                                                src = {chequeImg}
+                                                src = {this.state.chequeImage}
                                                 alt='Two pebbles anthropomorphized holding hands'
                                                 style = {{color: 'black'}}
                                                 annotations={this.state.annotations}
@@ -465,23 +499,23 @@ class Verification extends React.Component {
                                                     name="cheque" 
                                                     type="number" 
                                                     style={{width: '100px', padding: '0px', margin: '0px'}} 
-                                                    defaultValue="00000018"
+                                                    value={this.state.chequeNo}
                                                     // defaultValue={this.state.chequeNo} inline
                                                     />
                                                  
                                             </div>
-                                                {/* <div className = "row" style = {{marginRight: '90px'}}>
+                                                <div className = "row" style = {{marginRight: '90px'}}>
                                                     <h5 style = {{marginLeft: 'auto',marginRight: '0px'}}>Date: </h5>&nbsp;&nbsp;
-                                                    <p>{localStorage.getItem("customerDate")}</p>
-                                                </div> */}
-                                            <div style = {{backgroundColor: '#FFF6F6', padding: '5px', height:'250px'}}>
+                                                    <p>{this.state.chequeDate}</p>
+                                                </div>
+                                            <div style = {{backgroundColor: '#FFF6F6', padding: '5px', height:'200px'}}>
                                             <div className = "row" style = {{marginLeft: 'auto', marginTop: 50}}>
                                                  <h5>Pay </h5>&nbsp;&nbsp;
                                                  <div style= {{width: '350px', height: '25px', border: '1px solid #b4b4b4'}}>
                                                  <input
                                                     name="textbox1"
                                                     style = {{width: '350px', backgroundColor: '#FFF6F6', padding: '0px', margin: '0px'}}
-                                                    defaultValue="Izmah Israr"
+                                                    value={this.state.customerName}
                                                     // defaultValue={this.state.customerName}
                                                     onChange={evt => this.updateInputValue3(evt)}
                                                     />
@@ -496,7 +530,7 @@ class Verification extends React.Component {
                                                  <input
                                                     name="textbox2"
                                                     style = {{ width:'100%', backgroundColor: '#FFF6F6',  padding: '0px', margin: '0px', height: '50px'}} 
-                                                    defaultValue="One Crore Rupees Only"
+                                                    value={this.state.chequeAmountWords}
                                                     // defaultValue={this.state.chequeAmountWords}
                                                     onChange={evt => this.updateInputValue1(evt)}
                                                     />
@@ -506,7 +540,7 @@ class Verification extends React.Component {
                                                  <input 
                                                     name="age" 
                                                     style={{width: '100px', backgroundColor: '#FFF6F6', padding: '0px', margin: '0px'}} 
-                                                    defaultValue="1,00,00,000" 
+                                                    value={this.state.chequeAmountNumeric} 
                                                     // defaultValue={this.state.chequeAmountNumeric}
                                                     onChange={evt => this.updateInputValue2(evt)} inline
                                                     />
@@ -530,7 +564,7 @@ class Verification extends React.Component {
                                         
                                     <img style = {{width:'100%', maxHeight:'70px', objectFit: 'cover'}}
                                                             //src={"data:image/png;base64," +  this.state.signImage}
-                                                            src = "./assets/img/cheques/1b.jpg"
+                                                            src = {this.state.signSystem}
                                                             alt="..."
                                                         /> 
                                                         <h5 className = "text-center">Signature on System</h5>
@@ -553,7 +587,7 @@ class Verification extends React.Component {
                                    
                                     <img style = {{width:'100%', maxHeight:'70px', objectFit: 'cover'}}
                                                             //src={"data:image/png;base64," +  this.state.signImage}
-                                                            src = "./assets/img/cheques/1c.jpg"
+                                                            src = {this.state.signCheque}
                                                             alt="..."
                                                         />
                                                         <h5 className = "text-center">Signature on Cheque</h5>

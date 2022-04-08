@@ -118,7 +118,7 @@ const TableAll = (props) => {
 					localStorage.setItem("customerName", row.row.original.title_rec);
 					localStorage.setItem("customerAmount", row.row.original.numeric_amount);
 					localStorage.setItem("customerAmountWords", row.row.original.cheque_amount);
-					localStorage.setItem("customerDate", row.row.original.Date);
+					localStorage.setItem("customerDate", row.row.original.recieving_time);
 					localStorage.setItem("ID", row.row.original._id);
 					if (row.row.original.cheque_status === "approved") {
 						localStorage.setItem("reasons", JSON.stringify([]));
